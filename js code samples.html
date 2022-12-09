@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Regular Expressions</h2>
+
+<p>Search for an "e" in the next paragraph:</p>
+
+<p id="p01">The best things in life are free! 1222</p>
+
+<p id="demo"></p>
+
+<script>
+let text = document.getElementById("p01").innerHTML;
+const pattern = /e/;
+const number = /[0-9]/;
+const lowercase = /[a-z]/;
+
+
+document.getElementById("demo").innerHTML = pattern.test(text);
+
+document.getElementById("demo").innerHTML = number.test(text);
+
+
+let x = pattern.test(text)
+if(x === true){
+    alert("letter e alert message")
+}
+
+let y = number.test(text)
+if(y === true){
+    alert("number alert message")
+}
+
+let z = lowercase.test(text)
+if(z === true){
+    alert("lowercase alert message")
+}
+
+
+</script>
+
+</body>
+</html>

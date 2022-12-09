@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="logo.jpg">
+  <title> JS Form Validation - Deliverable 8 </title>
+<link rel="icon" href="icon.png">
+
+<style>
+    .mystyle {
+      display: block;
+      margin: auto
+    }
+    </style>
+
+</head>
+<body>
+
+    <div class="my-auto mx-auto border-2 border-solid w-1/4">
+        <div>
+           <p> Email </p> <br>
+           <input class="h-16 w-full border-2 border-solid" type="email" name="email" id="email">
+        </div> <br> <br>
+
+        <div>
+          <p> Password </p>  <br> <input type="password" id="password" class="h-16 border-2 border-solid w-full">
+        </div> <br>
+
+        <div >
+            <button id="submit" type="submit" class="border-2 border-solid w-full text-center h-16" onclick="myFunction()"> Submit </button>
+        </div>
+
+
+    </div>
+
+    <div id="message" class="w-1/4 mx-auto hidden">
+        <p id="character"> At least 8 characters </p>
+        <p id="upper"> At least 1 uppercase letter </p>
+        <p id="lower"> At least 1 lowercase letter </p>
+        <p id="number"> At least 1 number </p>
+        <p id="special"> At least 1 special character, e.g., ! @ # ? ] </p>
+        <p id="greater"> Do not use < or > in your password </p>
+    </div>
+
+
+</body>
+
+<script>
+
+function myFunction(){
+    var pass = document.getElementById("password").value;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (re.test(pass)) {
+        alert('correct pass')
+        return true;
+    }
+    else {
+        document.getElementById('message').className = "mystyle"
+        return false;
+    }
+}
+
+
+
+
+
+</script>
+
+
+</html>
