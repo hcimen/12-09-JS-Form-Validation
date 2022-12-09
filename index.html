@@ -10,7 +10,18 @@
 <style>
     .mystyle {
       display: block;
-      margin: auto
+      margin: auto;
+      border-style: solid;
+      border-width: medium;
+    }
+
+    .green {
+        color: green;
+        font-size: 28px; 
+    }
+    .red {
+        color:darkred;
+        font-size: 28px;
     }
     </style>
 
@@ -28,7 +39,12 @@
         </div> <br>
 
         <div >
-            <button id="submit" type="submit" class="border-2 border-solid w-full text-center h-16" onclick="myFunction()"> Submit </button>
+            <button id="submit" type="submit" class="border-2 border-solid w-full text-center h-16" onclick="myFunction(); myFunction1()"> Submit </button> <br>
+        </div>
+
+        <div>
+
+            <p id="test"></p> <br>
         </div>
 
 
@@ -61,7 +77,20 @@ function myFunction(){
     }
 }
 
-
+function myFunction1(){
+var upper = /[A-Z]/g;
+let text = document.getElementById("password").value;
+let b = upper.test(text);
+if(b === true){
+    document.getElementById('upper').className = "green";
+    document.getElementById('test').innerHTML = b;
+    return true;
+    }
+    else { document.getElementById('upper').className = "red";
+    document.getElementById('test').innerHTML = text;
+        return false;
+    }
+}
 
 
 
