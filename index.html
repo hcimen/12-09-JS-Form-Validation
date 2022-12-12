@@ -44,7 +44,7 @@
 
         <div>
 
-            <p id="test"></p> <br>
+            <p id="test"> Length <span id="length"> </span> Upper <span id="uppe"> </span> Lower <span id="lowe"></span> </p> <br>
         </div>
 
 
@@ -79,20 +79,35 @@ function myFunction(){
 
 function myFunction1(){
 var upper = /[A-Z]/g;
+var lower = /[a-z]/g;
 let text = document.getElementById("password").value;
 let b = upper.test(text);
+let c = lower.test(text);
+if(c === true){
+document.getElementById('lower').className = "green";
+document.getElementById('lowe').innerHTML = c;
+    }
+if(c === false){ 
+    document.getElementById('lower').className = "red";
+    document.getElementById('test').innerHTML += text;
+    }
 if(b === true){
     document.getElementById('upper').className = "green";
-    document.getElementById('test').innerHTML = b;
-    return true;
+    document.getElementById('uppe').innerHTML = b ;
     }
-    else { document.getElementById('upper').className = "red";
-    document.getElementById('test').innerHTML = text;
-        return false;
+if(b === false){ 
+    document.getElementById('upper').className = "red";
+    document.getElementById('test').innerHTML += text;
     }
+if(text.length >= 8){
+    document.getElementById('character').className = "green";
+    document.getElementById('length').innerHTML = a;
+    }
+if(text.length < 8){
+    document.getElementById('character').className = "red";
+    document.getElementById('test').innerHTML += text ;
+    }  
 }
-
-
 
 </script>
 
