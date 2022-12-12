@@ -10,7 +10,8 @@
 <style>
     .mystyle {
       display: block;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
       border-style: solid;
       border-width: medium;
     }
@@ -43,8 +44,7 @@
         </div>
 
         <div>
-
-            <p id="test"> Length <span id="length"> </span> Upper <span id="uppe"> </span> Lower <span id="lowe"></span> </p> <br>
+            <p id="test">  </p> <br>
         </div>
 
 
@@ -64,32 +64,36 @@
 
 <script>
 
-function myFunction(){
-    var pass = document.getElementById("password").value;
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    if (re.test(pass)) {
+function myFunction() {
+    let text = document.getElementById("password").value;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+    if (re.test(text) === true ) {
         alert('correct pass')
-        return true;
     }
-    else {
+    if (re.test(text) === false ) {
         document.getElementById('message').className = "mystyle"
-        return false;
     }
 }
 
-function myFunction1(){
+function myFunction1() {
 var upper = /[A-Z]/g;
 var lower = /[a-z]/g;
+var number = /\d/g;
+var special = /\W/g;
+var greater = /[^<>]/
 let text = document.getElementById("password").value;
 let b = upper.test(text);
 let c = lower.test(text);
+let d = number.test(text);
+let e = special.test(text);
+let f = greater.test(text);
 if(c === true){
 document.getElementById('lower').className = "green";
 document.getElementById('lowe').innerHTML = c;
     }
 if(c === false){ 
     document.getElementById('lower').className = "red";
-    document.getElementById('test').innerHTML += text;
+    document.getElementById('test').innerHTML = text;
     }
 if(b === true){
     document.getElementById('upper').className = "green";
@@ -97,16 +101,40 @@ if(b === true){
     }
 if(b === false){ 
     document.getElementById('upper').className = "red";
-    document.getElementById('test').innerHTML += text;
+    document.getElementById('test').innerHTML = text;
     }
 if(text.length >= 8){
     document.getElementById('character').className = "green";
-    document.getElementById('length').innerHTML = a;
+    document.getElementById('length').innerHTML = "enough text length" ;
     }
 if(text.length < 8){
     document.getElementById('character').className = "red";
-    document.getElementById('test').innerHTML += text ;
-    }  
+    document.getElementById('test').innerHTML = text ;
+    }
+if(d === true){
+    document.getElementById('number').className = "green";
+    document.getElementById('numbe').innerHTML = d ;
+    }
+if(d === false){ 
+    document.getElementById('number').className = "red";
+    document.getElementById('test').innerHTML = text;
+    }
+if(e === true){
+    document.getElementById('special').className = "green";
+    document.getElementById('specia').innerHTML = e ;
+    }
+if(e === false){ 
+    document.getElementById('special').className = "red";
+    document.getElementById('test').innerHTML = text;
+    }
+if(f === false){
+    document.getElementById('greater').className = "green";
+    document.getElementById('greate').innerHTML = f ;
+    }
+if(e === true){ 
+    document.getElementById('greater').className = "red";
+    document.getElementById('test').innerHTML = text;
+    }
 }
 
 </script>
