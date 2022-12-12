@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="logo.jpg">
+  <title> JS Form Validation - Deliverable 8 </title>
+<link rel="icon" href="icon.png">
+
+<style>
+    .mystyle {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: solid;
+      border-width: medium;
+      width: 50%;
+    }
+
+    .green {
+        color: green;
+        font-size: 28px; 
+    }
+    .red {
+        color:darkred;
+        font-size: 28px;
+    }
+    </style>
+
+</head>
+<body>
+    <br><br>
+    <div class="my-auto mx-auto w-1/2 text-4xl">
+        <div>
+           <p> Email: </p> <br>
+           <input class="h-16 w-full border-2 border-solid" type="email" name="email" id="email">
+        </div> <br>
+
+        <div>
+          <p> Password: </p>  <br> <input type="password" id="password" class="h-16 border-2 border-solid w-full">
+        </div>  <br>
+
+        <div >
+            <button id="submit" type="submit" class="border-2 border-solid w-full text-center h-16" onclick="myFunction(); myFunction1()"> Login </button> <br>
+        </div>
+
+        <div>
+
+            <p id="test" class="hidden"> Length <span id="length"> </span> Upper <span id="uppe"> </span> Lower <span id="lowe"></span> Number <span id="numbe"></span> </p>  <span id="specia">  </span>  <span id="greate">  </span>  </p> <br>
+        </div>
+
+
+    </div>
+
+    <div id="message" class="w-1/2 mx-auto border-8 border-solid border-black hidden">
+        <p class="green"> Password should have: </p>
+        <p id="character"> At least 8 characters </p>
+        <p id="upper"> At least 1 uppercase letter </p>
+        <p id="lower"> At least 1 lowercase letter </p>
+        <p id="number"> At least 1 number </p>
+        <p id="special"> At least 1 special character, e.g., ! @ # ? ] </p>
+    </div>
+
+
+</body>
+
+<script>
+
+function myFunction(){
+    var pass = document.getElementById("password").value;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).(?=.*\w).{8,}$/;
+    if (re.test(pass)) {
+        alert('correct pass')
+        return true;
+    }
+    else {
+        document.getElementById('message').className = "mystyle"
+        return false;
+    }
+}
+
+function myFunction1(){
+var upper = /[A-Z]/g;
+var lower = /[a-z]/g;
+var number = /\d/g;
+var special = /\W/g;
+var greater = /(?=.*[<>])/
+let text = document.getElementById("password").value;
+let b = upper.test(text);
+let c = lower.test(text);
+let d = number.test(text);
+let e = special.test(text);
+let f = greater.test(text);
+if(c === true){
+document.getElementById('lower').className = "green";
+    }
+if(c === false){ 
+    document.getElementById('lower').className = "red";
+    }
+if(b === true){
+    document.getElementById('upper').className = "green";
+    }
+if(b === false){ 
+    document.getElementById('upper').className = "red";
+    }
+if(text.length >= 8){
+    document.getElementById('character').className = "green";
+    }
+if(text.length < 8){
+    document.getElementById('character').className = "red";
+    }
+if(d === true){
+    document.getElementById('number').className = "green";
+    }
+if(d === false){ 
+    document.getElementById('number').className = "red";
+    }
+if(e === true){
+    document.getElementById('special').className = "green";
+    }
+if(e === false){ 
+    document.getElementById('special').className = "red";
+    }
+if(f === false){
+    document.getElementById('greater').className = "green";
+    }
+if(f === true){ 
+    document.getElementById('greater').className = "red";
+    }
+}
+
+</script>
+
+
+</html>
