@@ -10,13 +10,17 @@
 <style>
     .mystyle {
       display: block;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
       border-style: solid;
+      border-color: #59606D;
       border-width: medium;
+      text-align: center;
+      padding: 100px 0 ;
     }
 
     .green {
-        color: green;
+        color: olive;
         font-size: 28px; 
     }
     .red {
@@ -26,50 +30,64 @@
     </style>
 
 </head>
-<body>
-<div>
+<body class="bg-[#C6F1E7]">
+   
+<div class="flex flex-wrap"> 
 
-    <div class="my-auto mx-auto border-2 border-solid w-2/3">
+    <div class="my-auto mx-auto w-2/3 text-4xl bg-[#C6F1E7] p-16">
+            
         <div>
-           <p> Email </p> <br>
-           <input class="h-16 w-full border-2 border-solid" type="email" name="email" id="email">
-        </div> 
-
-        <div>
-          <p> Password </p>  <br> <input type="password" id="password" class="h-16 border-2 border-solid w-full">
+            <img src="logo.png" class="h-72 w-screen object-contain mx-auto" alt="logo">
+           <p id="what"> Email: </p> <br>
+           <input class="h-16 w-full border-2 border-solid border-[#59606D] rounded-2xl" type="email" name="email" id="username" required>
         </div> <br>
 
+        <div>
+          <p> Password: </p>  <br> <input type="password" id="password" class="h-16 border-2 border-solid border-[#59606D] w-full rounded-2xl">
+        </div>  <br>
+
         <div >
-            <button id="submit" type="submit" class="border-2 border-solid w-full text-center h-16" onclick="myFunction(); myFunction1()"> Submit </button> <br>
+            <button id="submit" type="submit" class="border-2 border-solid rounded-2xl w-full text-center h-16 bg-[#59606D] text-[#C6F1E7]" onclick="emailx(); myFunction(); myFunction1(); "> Login </button> <br>
+        </div>
+
+        <div>
+
+            <p id="test" class="hidden"> Length <span id="length"> </span> Upper <span id="uppe"> </span> Lower <span id="lowe"></span> Number <span id="numbe"></span> </p>  <span id="specia">  </span>  <span id="greate">  </span>  </p> <br>
         </div>
 
 
     </div>
-</div>
+    <div id="mess" class="flex-block">
 
-    <div id="message" class="w-1/4 mx-auto hidden">
+    <div id="message" class="hidden">
+        <p class="green"> Password should have: </p>
         <p id="character"> At least 8 characters </p>
         <p id="upper"> At least 1 uppercase letter </p>
         <p id="lower"> At least 1 lowercase letter </p>
         <p id="number"> At least 1 number </p>
-        <p id="special"> At least 1 special character, e.g., ! @ # ? ] </p>
-        <p id="greater"> Do not use < or > in your password </p>
+        <p id="special"> At least 1 special character, eg, ! @ # ? ] </p>
     </div>
 
-
+    <div id="message2" class="hidden">
+        <p class="green"> Email address should include @ sign </p>
+    </div>
+    </div>
+</div>
 </body>
 
 <script>
 
 function myFunction(){
     var pass = document.getElementById("password").value;
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).(?=.*\w).{8,}$/;
     if (re.test(pass)) {
-        alert('correct pass')
+        document.getElementById('message').className = "hidden";
+        alert("Your password looks good!");
         return true;
     }
     else {
-        document.getElementById('message').className = "mystyle"
+        document.getElementById('message').className = "mystyle";
+        alert("Please check your password again!")
         return false;
     }
 }
@@ -79,7 +97,7 @@ var upper = /[A-Z]/g;
 var lower = /[a-z]/g;
 var number = /\d/g;
 var special = /\W/g;
-var greater = /[^<>]/
+var greater = /(?=.*[<>])/
 let text = document.getElementById("password").value;
 let b = upper.test(text);
 let c = lower.test(text);
@@ -88,54 +106,55 @@ let e = special.test(text);
 let f = greater.test(text);
 if(c === true){
 document.getElementById('lower').className = "green";
-document.getElementById('lowe').innerHTML = c;
     }
 if(c === false){ 
     document.getElementById('lower').className = "red";
-    document.getElementById('test').innerHTML += text;
     }
 if(b === true){
     document.getElementById('upper').className = "green";
-    document.getElementById('uppe').innerHTML = b ;
     }
 if(b === false){ 
     document.getElementById('upper').className = "red";
-    document.getElementById('test').innerHTML += text;
     }
 if(text.length >= 8){
     document.getElementById('character').className = "green";
-    document.getElementById('length').innerHTML = "enough text length" ;
     }
 if(text.length < 8){
     document.getElementById('character').className = "red";
-    document.getElementById('test').innerHTML += text ;
     }
 if(d === true){
     document.getElementById('number').className = "green";
-    document.getElementById('numbe').innerHTML = d ;
     }
 if(d === false){ 
     document.getElementById('number').className = "red";
-    document.getElementById('test').innerHTML += text;
     }
 if(e === true){
     document.getElementById('special').className = "green";
-    document.getElementById('specia').innerHTML = e ;
     }
 if(e === false){ 
     document.getElementById('special').className = "red";
-    document.getElementById('test').innerHTML += text;
     }
 if(f === false){
     document.getElementById('greater').className = "green";
-    document.getElementById('greate').innerHTML = f ;
     }
-if(e === true){ 
+if(f === true){ 
     document.getElementById('greater').className = "red";
-    document.getElementById('test').innerHTML += text;
     }
 }
 
+function emailx(){
+    let mail = /[@]/g;
+    var text6 = document.getElementById("username").value;
+    let g = mail.test(text6);
+    if(g === false) {
+        alert("Please check your email address again!");
+        document.getElementById('message2').className = "mystyle";
+    }
+    if(g === true) {
+        alert("Your email address looks good!");
+        document.getElementById('message2').className = "hidden";
+    }
+}
 </script>
 
 
